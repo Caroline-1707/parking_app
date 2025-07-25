@@ -42,10 +42,7 @@ def sample_client(db_session):
 @pytest.fixture
 def sample_parking(db_session):
     parking = Parking(
-        address="123 Lenina St",
-        opened=True,
-        count_places=10,
-        count_available_places=10
+        address="123 Lenina St", opened=True, count_places=10, count_available_places=10
     )
     db_session.add(parking)
     db_session.commit()

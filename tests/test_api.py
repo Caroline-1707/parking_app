@@ -76,9 +76,7 @@ def test_enter_parking(client, sample_client, sample_parking, db_session):
     client_parking = (
         db_session.query(ClientParking)
         .filter_by(
-            client_id=sample_client.id,
-            parking_id=sample_parking.id,
-            time_out=None
+            client_id=sample_client.id, parking_id=sample_parking.id, time_out=None
         )
         .first()
     )
@@ -97,10 +95,7 @@ def test_exit_parking(
     assert "time_in" in resp_json
     assert "time_out" in resp_json
     parking = db_session.get(Parking, sample_parking.id)
-    assert (
-            parking.count_available_places
-            == sample_parking.count_available_places
-    )
+    assert parking.count_available_places == sample_parking.count_available_places
     client_parking = db_session.get(ClientParking, sample_client_parking.id)
     assert client_parking.time_out is not None
     assert client_parking.time_out > client_parking.time_in
@@ -108,10 +103,7 @@ def test_exit_parking(
 
 def test_enter_closed_parking(client, sample_client, db_session):
     parking = Parking(
-        address="789 Street St",
-        opened=False,
-        count_places=5,
-        count_available_places=5
+        address="789 Street St", opened=False, count_places=5, count_available_places=5
     )
     db_session.add(parking)
     db_session.commit()
@@ -125,10 +117,7 @@ def test_exit_without_card(client, db_session):
     client_no_card = Client(name="NoCard", surname="User", car_number="X999XX")
     db_session.add(client_no_card)
     parking = Parking(
-        address="101 Street St",
-        opened=True,
-        count_places=3,
-        count_available_places=2
+        address="101 Street St", opened=True, count_places=3, count_available_places=2
     )
     db_session.add(parking)
     db_session.commit()

@@ -26,11 +26,7 @@ class Parking(db.Model):
 class ClientParking(db.Model):
     __tablename__ = "client_parking"
     id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(
-        db.Integer, db.ForeignKey("client.id"), nullable=False
-    )
-    parking_id = db.Column(
-        db.Integer, db.ForeignKey("parking.id"), nullable=False
-    )
+    client_id = db.Column(db.Integer, db.ForeignKey("client.id"), nullable=False)
+    parking_id = db.Column(db.Integer, db.ForeignKey("parking.id"), nullable=False)
     time_in = db.Column(db.DateTime, nullable=False)
     time_out = db.Column(db.DateTime)

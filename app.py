@@ -78,9 +78,7 @@ def create_app(config_class=Config):
         try:
             data = request.get_json()
             if not data or "name" not in data or "surname" not in data:
-                return jsonify(
-                    {"message": "Name and surname are required"}
-                ), 400
+                return jsonify({"message": "Name and surname are required"}), 400
             client = Client(
                 name=data["name"],
                 surname=data["surname"],
@@ -100,9 +98,8 @@ def create_app(config_class=Config):
             data = request.get_json()
             if not data or "address" not in data or "count_places" not in data:
                 return (
-                    jsonify(
-                        {"message": "Address and count_places are required"}
-                    ), 400,
+                    jsonify({"message": "Address and count_places are required"}),
+                    400,
                 )
             parking = Parking(
                 address=data["address"],
@@ -112,9 +109,7 @@ def create_app(config_class=Config):
             )
             db.session.add(parking)
             db.session.commit()
-            return jsonify(
-                {"message": "Parking created", "id": parking.id}
-            ), 201
+            return jsonify({"message": "Parking created", "id": parking.id}), 201
         except IntegrityError:
             db.session.rollback()
             return jsonify({"message": "Error creating parking"}), 400
@@ -125,11 +120,10 @@ def create_app(config_class=Config):
             data = request.get_json()
             if not data or "client_id" not in data or "parking_id" not in data:
                 return (
-                    jsonify(
-                        {"message": "client_id and parking_id are required"}
-                    ), 400,
+                    jsonify({"message": "client_id and parking_id are required"}),
+                    400,
                 )
-#            client = Client.query.get_or_404(data["client_id"])
+            #            client = Client.query.get_or_404(data["client_id"])
             parking = Parking.query.get_or_404(data["parking_id"])
             if not parking.opened:
                 return jsonify({"message": "Parking is closed"}), 400
@@ -141,9 +135,7 @@ def create_app(config_class=Config):
                 time_out=None,
             ).first()
             if existing:
-                return jsonify(
-                    {"message": "Client is already on this parking"}
-                ), 400
+                return jsonify({"message": "Client is already on this parking"}), 400
             client_parking = ClientParking(
                 client_id=data["client_id"],
                 parking_id=data["parking_id"],
@@ -171,9 +163,8 @@ def create_app(config_class=Config):
             data = request.get_json()
             if not data or "client_id" not in data or "parking_id" not in data:
                 return (
-                    jsonify(
-                        {"message": "client_id and parking_id are required"}
-                    ), 400,
+                    jsonify({"message": "client_id and parking_id are required"}),
+                    400,
                 )
             client = Client.query.get_or_404(data["client_id"])
             parking = Parking.query.get_or_404(data["parking_id"])
@@ -186,16 +177,14 @@ def create_app(config_class=Config):
             ).first()
             if client_parking is None:
                 return (
-                    jsonify(
-                        {"message": "Client is not currently in this parking"}
-                    ), 400,
+                    jsonify({"message": "Client is not currently in this parking"}),
+                    400,
                 )
             time_out = datetime.utcnow()
             if time_out <= client_parking.time_in:
                 return (
-                    jsonify(
-                        {"message": "Time out cannot be earlier than time in"}
-                    ), 400,
+                    jsonify({"message": "Time out cannot be earlier than time in"}),
+                    400,
                 )
             client_parking.time_out = time_out
             parking.count_available_places += 1

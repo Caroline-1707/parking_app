@@ -33,7 +33,7 @@ jobs:
         run: black --diff --check .
 
       - name: Run mypy
-        run: mypy .
+        run: mypy --explicit-package-bases .
 
       - name: Run pytest
         run: pytest -v ./tests

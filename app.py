@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from flask import Flask, jsonify, request
-from module_29_testing.hw.config import Config
-from module_29_testing.hw.models import Client, ClientParking, Parking, db
+from config import Config
+from models import Client, ClientParking, Parking, db
 from sqlalchemy.exc import IntegrityError
 
 

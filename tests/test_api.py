@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 import pytest
-from module_29_testing.hw.models import Client, ClientParking, Parking
+from models import Client, ClientParking, Parking
 
 
 @pytest.mark.parametrize(

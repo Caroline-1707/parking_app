@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
 
 import pytest
-from module_29_testing.hw.app import create_app
-from module_29_testing.hw.config import TestingConfig
-from module_29_testing.hw.models import Client, ClientParking, Parking, db
+from app import create_app
+from config import TestingConfig
+from models import Client, ClientParking, Parking, db
 
 
 @pytest.fixture(scope="session")

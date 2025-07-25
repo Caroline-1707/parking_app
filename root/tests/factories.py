@@ -1,6 +1,6 @@
 import factory
 
-from models import Client, Parking
+from root.models import Client, Parking
 
 
 class ClientFactory(factory.alchemy.SQLAlchemyModelFactory):

@@ -3,8 +3,8 @@ from datetime import datetime
 from flask import Flask, jsonify, request
 from sqlalchemy.exc import IntegrityError
 
-from config import Config
-from models import Client, ClientParking, Parking, db
+from root.config import Config
+from root.models import Client, ClientParking, Parking, db
 
 
 def create_app(config_class=Config):

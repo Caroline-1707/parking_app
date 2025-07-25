@@ -2,9 +2,9 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from app import create_app
-from config import TestingConfig
-from models import Client, ClientParking, Parking, db
+from root.application import create_app
+from root.config import TestingConfig
+from root.models import Client, ClientParking, Parking, db
 
 
 @pytest.fixture(scope="session")

@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from models import Client, ClientParking, Parking
+from root.models import Client, ClientParking, Parking
 
 
 @pytest.mark.parametrize(

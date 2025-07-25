@@ -36,4 +36,4 @@ jobs:
         run: mypy --explicit-package-bases .
 
       - name: Run pytest
-        run: pytest -v ./tests
+        run: pytest -v ./root/tests

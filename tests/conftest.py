@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 import pytest
+
 from app import create_app
 from config import TestingConfig
 from models import Client, ClientParking, Parking, db

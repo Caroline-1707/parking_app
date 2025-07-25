@@ -1,9 +1,10 @@
 from datetime import datetime
 
 from flask import Flask, jsonify, request
+from sqlalchemy.exc import IntegrityError
+
 from config import Config
 from models import Client, ClientParking, Parking, db
-from sqlalchemy.exc import IntegrityError
 
 
 def create_app(config_class=Config):
